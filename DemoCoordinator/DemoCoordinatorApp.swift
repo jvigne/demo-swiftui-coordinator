@@ -11,7 +11,7 @@ import SwiftUI
 struct DemoCoordinatorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoordinatorView(rootContentPage: .red, parentCoordinator: nil)
         }
     }
 }
