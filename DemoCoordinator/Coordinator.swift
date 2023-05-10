@@ -7,16 +7,8 @@
 
 import SwiftUI
 
-enum ContentPage: String, Identifiable {
-    case red, blue, yellow, green, black
-    
-    var id: String {
-        self.rawValue
-    }
-}
-
 class Coordinator: ObservableObject {
-    @Published var path = NavigationPath()
+    @Published var path: [ContentPage] = []
     @Published var sheet: ContentPage?
     @Published var fullScreenCover: ContentPage?
     
@@ -42,29 +34,40 @@ class Coordinator: ObservableObject {
         self.fullScreenCover = fullScreenCover
     }
     
+    func dismiss() {
+        guard sheet == nil || fullScreenCover == nil else {
+            fatalError("Should not have sheet AND fullscreen cover")
+        }
+        if sheet != nil {
+            dismissSheet()
+        } else if fullScreenCover != nil {
+            dismissFullScreenCover()
+        }
+    }
+
     func dismissSheet() {
         sheet = nil
     }
-    
+
     func dismissFullScreenCover() {
         fullScreenCover = nil
     }
-    
+
     // MARK: - View Builders
-    
+
     @ViewBuilder
-    func build(_ page: ContentPage, parentCoordinator: Coordinator? = nil) -> some View {
+    func build(_ page: ContentPage, presentationDelegate: Coordinator? = nil) -> some View {
         switch page {
         case .red:
-            ContentView(bgColor: .red, nextPage: .blue, parentCoordinator: parentCoordinator)
+            ContentView(bgColor: .red, nextPage: .blue, presentationDelegate: presentationDelegate)
         case .blue:
-            ContentView(bgColor: .blue, nextPage: .yellow, parentCoordinator: parentCoordinator)
+            ContentView(bgColor: .blue, nextPage: .yellow, presentationDelegate: presentationDelegate)
         case .yellow:
-            ContentView(bgColor: .yellow, nextPage: .green, parentCoordinator: parentCoordinator)
+            ContentView(bgColor: .yellow, nextPage: .green, presentationDelegate: presentationDelegate)
         case .green:
-            ContentView(bgColor: .green, nextPage: .black, parentCoordinator: parentCoordinator)
+            ContentView(bgColor: .green, nextPage: .black, presentationDelegate: presentationDelegate)
         case .black:
-            ContentView(bgColor: .black, nextPage: .red, parentCoordinator: parentCoordinator)
+            ContentView(bgColor: .black, nextPage: .red, presentationDelegate: presentationDelegate)
         }
     }
 }

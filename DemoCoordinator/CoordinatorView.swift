@@ -10,19 +10,19 @@ import SwiftUI
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
     let rootContentPage: ContentPage
-    let parentCoordinator: Coordinator?
+    let presentationDelegate: Coordinator?
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            coordinator.build(rootContentPage, parentCoordinator: parentCoordinator)
+            coordinator.build(rootContentPage, presentationDelegate: presentationDelegate)
                 .navigationDestination(for: ContentPage.self) { page in
-                    coordinator.build(page)
+                    coordinator.build(page, presentationDelegate: presentationDelegate)
                 }
                 .sheet(item: $coordinator.sheet) { sheet in
-                    CoordinatorView(rootContentPage: sheet, parentCoordinator: coordinator)
+                    CoordinatorView(rootContentPage: sheet, presentationDelegate: coordinator)
                 }
                 .fullScreenCover(item: $coordinator.fullScreenCover) { cover in
-                    CoordinatorView(rootContentPage: cover, parentCoordinator: coordinator)
+                    CoordinatorView(rootContentPage: cover, presentationDelegate: coordinator)
                 }
         }.environmentObject(coordinator)
     }
@@ -30,6 +30,6 @@ struct CoordinatorView: View {
 
 struct CoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        CoordinatorView(rootContentPage: .red, parentCoordinator: nil)
+        CoordinatorView(rootContentPage: .red, presentationDelegate: nil)
     }
 }

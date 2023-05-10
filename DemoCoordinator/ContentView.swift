@@ -11,7 +11,7 @@ struct ContentView: View {
     @EnvironmentObject private var coordinator: Coordinator
     let bgColor: Color
     let nextPage: ContentPage
-    let parentCoordinator: Coordinator?
+    let presentationDelegate: Coordinator?
     
     var body: some View {
         ZStack {
@@ -21,9 +21,8 @@ struct ContentView: View {
                 Button("push next (button)", action: { coordinator.push(nextPage) })
                 Button("present next as Sheet", action: { coordinator.present(sheet: nextPage) })
                 Button("present next as FSCover", action: { coordinator.present(fullScreenCover: nextPage) })
-                if let parentCoordinator = parentCoordinator {
-                    Button("dismissSheet", action: { parentCoordinator.dismissSheet() })
-                    Button("dismissCover", action: { parentCoordinator.dismissFullScreenCover() })
+                if let presentationDelegate = presentationDelegate {
+                    Button("dismiss", action: { presentationDelegate.dismiss() })
                 }
             }.buttonStyle(.borderedProminent)
         }.navigationTitle("MyView")
@@ -32,7 +31,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(bgColor: .red, nextPage: .blue, parentCoordinator: nil)
+        ContentView(bgColor: .red, nextPage: .blue, presentationDelegate: nil)
     }
 }
 

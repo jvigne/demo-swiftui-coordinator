@@ -13,6 +13,7 @@
 		2CC108042A0459D7005511BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC108032A0459D7005511BF /* Preview Assets.xcassets */; };
 		2CC1080B2A0459F7005511BF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1080A2A0459F7005511BF /* Coordinator.swift */; };
 		2CC1080D2A045A4A005511BF /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1080C2A045A4A005511BF /* CoordinatorView.swift */; };
+		2CC108162A0B8FBA005511BF /* ContentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC108152A0B8FBA005511BF /* ContentPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		2CC108032A0459D7005511BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2CC1080A2A0459F7005511BF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2CC1080C2A045A4A005511BF /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
+		2CC108152A0B8FBA005511BF /* ContentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				2CC107FC2A0459D4005511BF /* DemoCoordinatorApp.swift */,
+				2CC108152A0B8FBA005511BF /* ContentPage.swift */,
 				2CC107FE2A0459D4005511BF /* ContentView.swift */,
 				2CC1080A2A0459F7005511BF /* Coordinator.swift */,
 				2CC1080C2A045A4A005511BF /* CoordinatorView.swift */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC108162A0B8FBA005511BF /* ContentPage.swift in Sources */,
 				2CC107FF2A0459D4005511BF /* ContentView.swift in Sources */,
 				2CC107FD2A0459D4005511BF /* DemoCoordinatorApp.swift in Sources */,
 				2CC1080B2A0459F7005511BF /* Coordinator.swift in Sources */,
