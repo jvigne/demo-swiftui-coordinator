@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var navigationDelegate: Coordinator
     let bgColor: Color
     let nextPage: ContentPage
     let presentationDelegate: Coordinator?
@@ -18,9 +18,9 @@ struct ContentView: View {
             bgColor
             VStack {
                 NavigationLink("push next (link)", value: nextPage)
-                Button("push next (button)", action: { coordinator.push(nextPage) })
-                Button("present next as Sheet", action: { coordinator.present(sheet: nextPage) })
-                Button("present next as FSCover", action: { coordinator.present(fullScreenCover: nextPage) })
+                Button("push next (button)", action: { navigationDelegate.push(nextPage) })
+                Button("present next as Sheet", action: { navigationDelegate.present(sheet: nextPage) })
+                Button("present next as FSCover", action: { navigationDelegate.present(fullScreenCover: nextPage) })
                 if let presentationDelegate = presentationDelegate {
                     Button("dismiss", action: { presentationDelegate.dismiss() })
                 }

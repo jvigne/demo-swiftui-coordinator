@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct CoordinatorView: View {
-    @StateObject private var coordinator = Coordinator()
+    @StateObject private var navigationDelegate = Coordinator()
     let rootContentPage: ContentPage
     let presentationDelegate: Coordinator?
     
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
-            coordinator.build(rootContentPage, presentationDelegate: presentationDelegate)
+        NavigationStack(path: $navigationDelegate.path) {
+            navigationDelegate.build(rootContentPage, presentationDelegate: presentationDelegate)
                 .navigationDestination(for: ContentPage.self) { page in
-                    coordinator.build(page, presentationDelegate: presentationDelegate)
+                    navigationDelegate.build(page, presentationDelegate: presentationDelegate)
                 }
-                .sheet(item: $coordinator.sheet) { sheet in
-                    CoordinatorView(rootContentPage: sheet, presentationDelegate: coordinator)
+                .sheet(item: $navigationDelegate.sheet) { sheet in
+                    CoordinatorView(rootContentPage: sheet, presentationDelegate: navigationDelegate)
                 }
-                .fullScreenCover(item: $coordinator.fullScreenCover) { cover in
-                    CoordinatorView(rootContentPage: cover, presentationDelegate: coordinator)
+                .fullScreenCover(item: $navigationDelegate.fullScreenCover) { cover in
+                    CoordinatorView(rootContentPage: cover, presentationDelegate: navigationDelegate)
                 }
-        }.environmentObject(coordinator)
+        }.environmentObject(navigationDelegate)
     }
 }
 
